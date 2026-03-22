@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: sourabh123421/frontend:v20
+        image: sourabh123421/backend:v21
         imagePullPolicy: Always
         env:
           - name: MONGO_CONN_STR
