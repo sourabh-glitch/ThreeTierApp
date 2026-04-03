@@ -4,9 +4,10 @@ metadata:
   name: api
   namespace: three-tier
 spec: 
-  ports:
-  - port: 3500
-    protocol: TCP
-  type: ClusterIP
   selector:
     role: api
+  ports:
+  - port: 3500
+    targetPort: 3500   # 👈 MUST add this
+    protocol: TCP
+  type: ClusterIP
