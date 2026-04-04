@@ -4,14 +4,15 @@ metadata:
   name: three-tier-ingress
   namespace: three-tier
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   ingressClassName: nginx
   rules:
   - host: threetierapp.duckdns.org
     http:
       paths:
-      - path: /
+      # Frontend
+      - path: /(.*)
         pathType: Prefix
         backend:
           service:
@@ -19,7 +20,8 @@ spec:
             port:
               number: 3000
 
-      - path: /api
+      # API (preserve full path)
+      - path: /api/(.*)
         pathType: Prefix
         backend:
           service:
